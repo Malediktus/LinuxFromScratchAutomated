@@ -10,5 +10,5 @@ cd       build
              --enable-gprofng=no \
              --disable-werror
 
-make -j2
-make install -j2
+make
+make install

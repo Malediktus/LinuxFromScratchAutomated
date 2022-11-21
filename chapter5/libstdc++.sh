@@ -12,6 +12,6 @@ cd       build
     --disable-libstdcxx-pch         \
     --with-gxx-include-dir=/tools/$LFS_TGT/include/c++/12.2.0
 
-make -j2
-make DESTDIR=$LFS install -j2
+make
+make DESTDIR=$LFS install
 rm -v $LFS/usr/lib/lib{stdc++,stdc++fs,supc++}.la

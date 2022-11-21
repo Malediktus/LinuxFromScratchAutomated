@@ -2,8 +2,8 @@
 
 export LFS=/mnt/lfs
 export LFS_TGT=x86_64-lfs-linux-gnu
-export LFS_DISK=/dev/sdb
-export MAKEFLAGS='-j2'
+export LFS_DISK=/dev/sdb # TODO: Prompt the user
+export MAKEFLAGS='-j12' # TODO: Get number of cores from a script
 
 set -e
 
@@ -13,6 +13,8 @@ if ! grep -q "$LFS" /proc/mounts; then
     echo "====== FORMATING DISK"
     source setupdisk.sh "$LFS_DISK"
     sudo mount "${LFS_DISK}2" "$LFS"
+    mkdir -pv "$LFS/boot"
+    sudo mount "${LFS_DISK}1" "$LFS/boot"
     sudo chown -v "$USER" "$LFS"
 
     echo "====== SETTING UP THE ROOT FS"
@@ -64,12 +66,14 @@ chmod ugo+x preparechroot.sh
 chmod ugo+x insidechroot.sh
 chmod ugo+x insidechroot2.sh
 chmod ugo+x insidechroot3.sh
+chmod ugo+x insidechroot4.sh
+chmod ugo+x insidechroot5.sh
 chmod ugo+x teardownchroot.sh
 sudo ./preparechroot.sh "$LFS"
 
 echo "====== ENTERING THE CHROOT ENVIRONMENT"
 
-for script in "/sources/insidechroot.sh" "/sources/insidechroot2.sh" "/sources/insidechroot3.sh"; do
+for script in "/sources/insidechroot.sh" "/sources/insidechroot2.sh" "/sources/insidechroot3.sh" "/sources/insidechroot4.sh" "/sources/insidechroot5.sh"; do
     sudo chroot "$LFS" /usr/bin/env -i \
         HOME=/root \
         TERM="$TERM" \

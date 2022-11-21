@@ -1,6 +1,6 @@
 make mrproper
-make defconfig # TODO use custom config (wyyos video on the linux kernel)
-make -j2
+make defconfig # TODO: Use custom config from configs directory
+make
 make modules_install
 
 cp -iv arch/x86/boot/bzImage /boot/vmlinuz-5.19.2-lfs-11.2-systemd

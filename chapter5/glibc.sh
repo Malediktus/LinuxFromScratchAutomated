@@ -23,8 +23,8 @@ echo "rootsbindir=/usr/sbin" > configparms
       --with-headers=$LFS/usr/include    \
       libc_cv_slibdir=/usr/lib
 
-make -j2
-make DESTDIR=$LFS install -j2
+make
+make DESTDIR=$LFS install
 sed '/RTLDLIST=/s@/usr@@g' -i $LFS/usr/bin/ldd
 
 echo "TESTING CROSS COMPILER"
