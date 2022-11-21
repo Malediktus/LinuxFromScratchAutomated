@@ -20,7 +20,7 @@ cat packages.csv | grep -i "^$PACKAGE" | grep -i -v "\.patch;" | while read line
     pushd "$DIRNAME"
     
     if [ "$(ls -1A | wc -l)" == "1" ]; then
-        mv $(ls -1A)/* $(ls -1A)/.* ./
+        mv $(ls -1A)/{*,.*} ./
     fi
     
     echo "====== COMPILING $PACKAGE"

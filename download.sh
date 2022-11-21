@@ -15,5 +15,4 @@ cat packages.csv | while read line; do
             exit 1
         fi
     fi
-
 done

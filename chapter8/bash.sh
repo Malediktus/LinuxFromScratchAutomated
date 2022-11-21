@@ -6,7 +6,4 @@
 make
 make install
 
-exec /usr/bin/bash --login << EOF
-root
-lfs
-EOF
+# exec /usr/bin/bash --login
